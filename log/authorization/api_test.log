@@ -1,0 +1,57 @@
+
+    ============================
+        Authorization test
+    ============================
+
+    request done at "/v1/sentiment"
+    | username="alice"
+    | password="wonderland"
+
+    expected result = 200
+    actual restult = 200
+
+    ==>  SUCCESS
+
+    
+    ============================
+        Authorization test
+    ============================
+
+    request done at "/v2/sentiment"
+    | username="alice"
+    | password="wonderland"
+
+    expected result = 200
+    actual restult = 200
+
+    ==>  SUCCESS
+
+    
+    ============================
+        Authorization test
+    ============================
+
+    request done at "/v1/sentiment"
+    | username="bob"
+    | password="builder"
+
+    expected result = 200
+    actual restult = 200
+
+    ==>  SUCCESS
+
+    
+    ============================
+        Authorization test
+    ============================
+
+    request done at "/v2/sentiment"
+    | username="bob"
+    | password="builder"
+
+    expected result = 403
+    actual restult = 403
+
+    ==>  SUCCESS
+
+    

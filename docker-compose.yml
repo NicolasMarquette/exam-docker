@@ -1,0 +1,73 @@
+version: "3.9"
+
+services:
+  fastapi:
+    image: datascientest/fastapi:1.0.0
+    container_name: fastapi
+    networks: 
+      - network_for_test
+    ports:
+      - 8000:8000
+  
+  authentication_test:
+    build: 
+      context: .
+      dockerfile: Dockerfile-authentication
+    image: authentication
+    container_name: authentication_test
+    depends_on:
+      - fastapi
+    networks:
+      - network_for_test
+    volumes:
+      - ./log/authentication:/app/log
+    environment:
+      - USER_NAME=alice:bob:clementine
+      - PASSWORD=wonderland:builder:mandarine
+      - EXPECTED_RESULT=200:200:403
+      - LOG=1
+
+  authorization_test:
+    build:
+      context: .
+      dockerfile: Dockerfile-authorization
+    image: authorization
+    container_name: authorization_test
+    depends_on:
+      - fastapi
+      - authentication_test
+    networks:
+      - network_for_test
+    volumes:
+      - ./log/authorization:/app/log
+    environment:
+      - USER_NAME=alice:bob
+      - PASSWORD=wonderland:builder
+      - VERSION=v1:v2
+      - EXPECTED_RESULT=200:200:200:403
+      - LOG=1
+
+  content_test:
+    build:
+      context: .
+      dockerfile: Dockerfile-content
+    image: content
+    container_name: content_test
+    depends_on:
+      - fastapi
+      - authentication_test
+      - authorization_test
+    networks:
+      - network_for_test
+    volumes:
+      - ./log/content:/app/log
+    environment:
+      - USER_NAME=alice
+      - PASSWORD=wonderland
+      - VERSION=v1:v2
+      - SENTENCE=life is beautiful:that sucks
+      - EXPECTED_RESULT=POSITIF:NEGATIF
+      - LOG=1
+
+networks:
+  network_for_test:

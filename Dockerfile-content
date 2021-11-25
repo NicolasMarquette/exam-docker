@@ -1,0 +1,14 @@
+FROM debian:latest
+
+RUN apt-get update \
+&& apt-get install python3-pip -y \
+&& pip3 install requests==2.26.0 \
+&& apt-get clean
+
+COPY content_test.py /app/
+
+WORKDIR /app/
+
+EXPOSE 8000
+
+CMD python3 content_test.py

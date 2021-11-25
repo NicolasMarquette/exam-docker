@@ -1,0 +1,61 @@
+
+    ============================
+            Content test
+    ============================
+
+    request done at "/v1/sentiment"
+    | username="alice"
+    | password="wonderland"
+    | sentence="life is beautiful"
+
+    expected result = POSITIF
+    actual restult = POSITIF
+
+    ==>  SUCCESS
+
+    
+    ============================
+            Content test
+    ============================
+
+    request done at "/v1/sentiment"
+    | username="alice"
+    | password="wonderland"
+    | sentence="that sucks"
+
+    expected result = NEGATIF
+    actual restult = NEGATIF
+
+    ==>  SUCCESS
+
+    
+    ============================
+            Content test
+    ============================
+
+    request done at "/v2/sentiment"
+    | username="alice"
+    | password="wonderland"
+    | sentence="life is beautiful"
+
+    expected result = POSITIF
+    actual restult = POSITIF
+
+    ==>  SUCCESS
+
+    
+    ============================
+            Content test
+    ============================
+
+    request done at "/v2/sentiment"
+    | username="alice"
+    | password="wonderland"
+    | sentence="that sucks"
+
+    expected result = NEGATIF
+    actual restult = NEGATIF
+
+    ==>  SUCCESS
+
+    
